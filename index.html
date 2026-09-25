@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Line • Saúde e Bem-estar</title>
+  <meta name="description"
+    content="Health Line: IMC, nutrição, hidratação, hábitos e plano alimentar educativo personalizado.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="logo.jpg">
+
+</head>
+
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <header id="siteHeader">
+    <nav class="wrap">
+      <a class="logo" href="#inicio"><span class="logo-mark"><img src="logo.jpg" alt="Health Line" width="38" height="38"></span>Health <span
+          style="color:var(--coral)">Line</span></a>
+      <button class="navtoggle" id="navToggle" aria-label="Abrir menu">☰</button>
+      <ul class="navlinks" id="navLinks">
+        <li><a href="#inicio" data-section="inicio">Início</a></li>
+        <li><a href="#resumo" data-section="resumo">Meu dia</a></li>
+        <li><a href="#imc" data-section="imc">IMC</a></li>
+        <li><a href="#nutricao" data-section="nutricao">Nutrição</a></li>
+        <li><a href="#dieta" data-section="dieta">Plano alimentar</a></li>
+        <li><a href="#habitos" data-section="habitos">Hábitos</a></li>
+      </ul>
+      <div class="nav-actions"><button class="btn btn-primary nav-account" id="accountBtn" type="button">Entrar</button><button class="icon-btn" id="themeBtn" title="Alternar tema">☾</button></div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero reveal">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow" id="heroGreeting">BEM-ESTAR DIÁRIO</span>
+          <h1>Cuide de você com <em>clareza</em>, não com pressa.</h1>
+          <p class="lead">Calcule seu IMC, acompanhe a água, monte uma semana de refeições que cabe na sua rotina e crie hábitos que você consegue manter. Tudo parte dos seus dados, sem pressão e sem promessas milagrosas.</p>
+          <div class="cta"><a class="btn btn-primary" href="#imc">Calcular meu IMC</a><a class="btn btn-ghost"
+              href="#dieta">Criar meu plano</a></div>
+        </div>
+        <div class="hero-card">
+          <div class="pulse"><svg viewBox="0 0 400 150">
+              <path d="M0 75 H75 L95 75 L112 32 L132 118 L152 18 L172 75 H250 L270 55 L290 95 L310 75 H400" />
+            </svg></div>
+          <div class="hero-stats">
+            <div class="mini"><b>IMC</b><span>referência corporal</span></div>
+            <div class="mini"><b>Água</b><span>acompanhamento diário</span></div>
+            <div class="mini"><b>Hábitos</b><span>progresso simples</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resumo" class="reveal">
+      <div class="wrap">
+        <div class="day-head">
+          <div>
+            <span class="eyebrow">Meu dia</span>
+            <h2 id="dayTitle">Como está o seu dia</h2>
+            <p class="day-sub">Água, hábitos e refeições de hoje, num só lugar.</p>
+          </div>
+          <div class="day-score" aria-live="polite">
+            <div class="day-score-num" id="dayScore">0%</div>
+            <div class="day-score-label">do dia concluído</div>
+            <div class="day-bar"><i id="dayScoreBar"></i></div>
+          </div>
+        </div>
+        <div class="day-grid" id="dayGrid"></div>
+      </div>
+    </section>
+
+    <section id="imc" class="reveal">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">CALCULADORA</span>
+          <h2>Qual é a sua referência de IMC?</h2>
+          <p>Preencha peso, altura e idade. O resultado é apenas uma referência e não substitui avaliação profissional.
+          </p>
+        </div>
+        <div class="form-grid">
+          <form class="card form-card imc-form-card" id="imcForm">
+            <div class="imc-form-intro">
+              <div class="imc-step">1</div>
+              <div><strong>Preencha seus dados</strong><span>Leva menos de 1 minuto</span></div>
+            </div>
+            <div class="field"><label for="peso">Peso <small>em quilogramas</small></label>
+              <div class="field-unit"><input id="peso" type="number" min="1" step=".1" placeholder="70"
+                  required><span>kg</span></div>
+            </div>
+            <div class="field"><label for="altura">Altura <small>em centímetros</small></label>
+              <div class="field-unit"><input id="altura" type="number" min="1" step=".1" placeholder="170"
+                  required><span>cm</span></div>
+            </div>
+            <div class="field"><label for="idade">Idade <small>em anos</small></label><input id="idade" type="number" min="1" max="120"
+                placeholder="18" required></div>
+            <button class="btn btn-primary imc-submit" type="submit"><span>Calcular meu IMC</span><span aria-hidden="true">→</span></button>
+            <p class="imc-helper">Usamos apenas esses 3 dados para fazer a conta.</p>
+            <p id="imcError" style="color:var(--coral);font-size:13px;margin-top:9px"></p>
+          </form>
+          <div class="card result-card imc-result-card">
+            <div class="imc-result-top"><div><span class="eyebrow">PASSO 2 · RESULTADO</span><h3>Seu IMC</h3></div><div class="imc-result-icon">✓</div></div>
+            <div class="imc-number-wrap"><div class="result-number" id="imcValue">--</div><span>kg/m²</span></div>
+            <div class="badge" id="imcCat" style="visibility:hidden">Aguardando dados</div>
+            <div class="imc-reading"><strong>Como entender?</strong><p class="note" id="imcTip">Preencha seus dados e clique em “Calcular meu IMC” para ver uma explicação simples.</p></div>
+            <div class="disclaimer"><b>Importante:</b> o IMC é só uma referência. Em menores de 20 anos, a
+              interpretação oficial usa curvas por idade e sexo. Não use este número para decidir dietas restritivas.</div>
+          </div>
+        </div>
+
+        <div class="card info-card">
+          <h3>O que é o IMC?</h3>
+          <p class="lead-small">É uma conta rápida que compara o seu peso com a sua altura. Serve como uma
+            referência geral — não como um diagnóstico e nem como um julgamento do seu corpo.</p>
+
+          <div class="formula-chip">
+            IMC = peso (kg) ÷ altura² (m)
+            <span>ex.: 70 ÷ 1,70² ≈ 24,2</span>
+          </div>
+
+          <div class="range-list">
+            <div class="range-item low-dot">
+              <div class="dot"></div>
+              <b>&lt; 18,5</b>
+              <span>Abaixo da referência. Pode ser normal para o seu biotipo ou indicar que vale observar alimentação e energia.</span>
+            </div>
+            <div class="range-item ok-dot">
+              <div class="dot"></div>
+              <b>18,5 – 24,9</b>
+              <span>Faixa de referência para adultos. Sozinha, não garante saúde — é só um ponto de partida.</span>
+            </div>
+            <div class="range-item over-dot">
+              <div class="dot"></div>
+              <b>25 – 29,9</b>
+              <span>Acima da referência. Observe sono, alimentação e movimento, sem pressa e sem culpa.</span>
+            </div>
+            <div class="range-item obese-dot">
+              <div class="dot"></div>
+              <b>≥ 30</b>
+              <span>Bem acima da referência. O ideal é conversar com um profissional para ver o contexto completo.</span>
+            </div>
+          </div>
+
+          <div class="tip-grid">
+            <div class="tip-box">
+              <div class="tip-label">Menores de 20 anos</div>
+              <p>O corpo ainda está crescendo. Aqui usamos as mesmas faixas como <strong>referência aproximada</strong>, mas a avaliação oficial usa curvas por idade e sexo (percentis). O número sozinho não define o que você deve comer.</p>
+            </div>
+            <div class="tip-box">
+              <div class="tip-label">O que o IMC não mostra</div>
+              <p>Não separa músculo de gordura, não mede exames, sono nem bem-estar. Atletas podem ter IMC alto sem excesso de gordura. Use-o junto com outras informações, nunca sozinho.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nutricao" class="reveal">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">FERRAMENTAS</span>
+          <h2>Nutrição no dia a dia</h2>
+          <p>Entenda quanta energia o corpo gasta, defina a sua própria meta de água e consulte os nutrientes dos alimentos que você come no dia a dia.</p>
+        </div>
+        <div class="tools">
+          <div class="card tool-card">
+            <h3>Estimativa de gasto energético</h3>
+            <p style="font-size:13px;color:var(--soft);margin:6px 0 15px">Use como estimativa educativa, não como
+              prescrição.</p>
+            <div class="toggle"><button id="btnF" class="active">Feminino</button><button id="btnM">Masculino</button>
+            </div>
+            <form id="calForm">
+              <div class="form-grid" style="gap:10px">
+                <div class="field"><label>Idade</label><input id="idadeCal" type="number" min="1"></div>
+                <div class="field"><label>Peso (kg)</label><input id="pesoCal" type="number" step=".1"></div>
+              </div>
+              <div class="field"><label>Altura (cm)</label><input id="alturaCal" type="number"></div>
+              <div class="field"><label>Nível de atividade</label><select id="atividade">
+                  <option value="1.2">Pouco ativo — pouco ou nenhum exercício</option>
+                  <option value="1.375">Levemente ativo — exercício leve 1 a 3x/semana</option>
+                  <option value="1.55">Moderadamente ativo — exercício moderado 3 a 5x/semana</option>
+                  <option value="1.725">Muito ativo — exercício intenso quase todos os dias</option>
+                </select></div>
+              <button class="btn btn-primary" type="submit">Calcular estimativa</button>
+            </form>
+            <div class="cal-result" id="calResult">
+              <div class="big" id="calBig"></div><small id="calSmall" style="color:var(--soft)"></small>
+              <p class="explain-block" style="margin-top:12px">Esse número é a estimativa do seu Gasto Energético
+                Total, calculado a partir da Taxa Metabólica Basal (a energia que o corpo gasta em repouso, só para
+                manter funções vitais) multiplicada pelo seu nível de atividade. Ele varia de pessoa para pessoa e
+                de dia para dia — trate-o como uma referência para entender sua rotina, não como uma meta rígida de
+                calorias a cumprir.</p>
+            </div>
+          </div>
+
+          <div class="card tool-card water-card">
+            <div class="water-head">
+              <div>
+                <h3>Hidratação</h3>
+                <p class="water-lead" id="waterLead">Toque nos copos para registrar.</p>
+              </div>
+              <div class="water-ring" id="waterRing" aria-hidden="true">
+                <svg viewBox="0 0 72 72">
+                  <circle class="water-ring-bg" cx="36" cy="36" r="30"/>
+                  <circle class="water-ring-fill" id="waterRingFill" cx="36" cy="36" r="30"/>
+                </svg>
+                <span class="water-ring-label" id="waterRingLabel">0%</span>
+              </div>
+            </div>
+
+            <div class="water-progress-track" aria-hidden="true">
+              <div class="water-progress-fill" id="waterProgressFill"></div>
+              <div class="water-progress-wave" id="waterProgressWave"></div>
+            </div>
+
+            <div class="water-config">
+              <label>Meta do dia<span class="field-unit"><input id="waterGoalInput" type="number" min="500" max="8000" step="50"><span>ml</span></span></label>
+              <label>Tamanho do copo<select id="waterGlassSize"><option value="150">150 ml</option><option value="200">200 ml</option><option value="250">250 ml</option><option value="300">300 ml</option><option value="350">350 ml</option><option value="500">500 ml (garrafa)</option></select></label>
+              <button type="button" class="btn btn-ghost" id="waterSuggest">Sugerir pelo meu peso</button>
+            </div>
+            <p class="water-hint" id="waterHint">Defina a meta que faz sentido para você. Referência comum: cerca de 35 ml por kg.</p>
+            <div class="water-quick"><input id="waterCustom" type="number" min="1" max="2000" placeholder="Outra quantidade"><span>ml</span><button type="button" class="btn btn-ghost" id="waterCustomAdd">Adicionar</button></div>
+            <div class="water-glasses" id="waterGlasses" role="group" aria-label="Copos de água"></div>
+
+            <div class="water-status">
+              <div class="water-stats">
+                <div class="water-big" id="waterBig">0 <span>/ 2000 ml</span></div>
+                <small id="waterSub">0 de 8 copos</small>
+              </div>
+              <div class="water-actions">
+                <button class="btn btn-ghost water-btn" id="waterMinus" type="button" title="Remover um copo" aria-label="Remover um copo">−</button>
+                <button class="btn btn-primary water-btn" id="waterPlus" type="button" title="Adicionar um copo" aria-label="Adicionar um copo">+</button>
+                <button class="btn btn-ghost" id="waterReset" type="button">Zerar</button>
+              </div>
+            </div>
+
+            <div class="water-goal-msg" id="waterGoalMsg" hidden>Meta de referência atingida — ótimo trabalho! 💧</div>
+
+            <p class="explain-block">A água participa da digestão, da regulação da temperatura corporal, do
+              transporte de nutrientes e da concentração ao longo do dia. A meta é sua para ajustar: 35 ml por kg é só uma
+              referência geral, e pessoas maiores, mais ativas ou em climas quentes costumam precisar de mais, e
+              parte da hidratação também vem de alimentos como frutas e sopas. Beber pequenas quantidades ao longo do
+              dia costuma funcionar melhor do que grandes quantidades de uma vez.</p>
+          </div>
+        </div>
+
+        <!-- Busca nutricional (base local Brasil) -->
+        <div class="card food-search-card">
+          <div class="food-search-hero">
+            <div class="food-search-title">
+              <span class="food-search-icon" aria-hidden="true">⌕</span>
+              <div>
+                <span class="eyebrow">CONSULTA RÁPIDA</span>
+                <h3>Consultar alimento</h3>
+                <p>Pesquise um alimento para ver calorias, proteínas, carboidratos, gorduras e fibras.</p>
+              </div>
+            </div>
+            <span class="food-db-badge">🇧🇷 Base brasileira</span>
+          </div>
+
+          <div class="food-search-main">
+            <label class="food-search-label" for="foodSearchInput">O que você quer consultar?</label>
+            <div class="food-search-box">
+              <span class="food-search-box-icon" aria-hidden="true">⌕</span>
+              <input id="foodSearchInput" type="text" placeholder="Ex.: banana, arroz integral, feijão..."
+                autocomplete="off" aria-label="Buscar alimento por nome" list="foodSearchSuggestions">
+              <datalist id="foodSearchSuggestions"></datalist>
+              <button class="btn btn-primary food-search-submit" id="foodSearchBtn" type="button">Buscar alimento</button>
+            </div>
+            <p class="food-search-hint">Digite o nome ou use uma categoria abaixo. Pressione Enter para pesquisar.</p>
+          </div>
+
+          <div class="food-filter-panel" id="foodFilterPanel">
+            <div class="food-filter-head">
+              <div>
+                <strong>Explore por categoria</strong>
+                <span>Encontre alimentos sem precisar digitar o nome.</span>
+              </div>
+            </div>
+            <div class="food-category-chips" id="foodCategoryChips"></div>
+
+            <div class="food-restrict-block">
+              <div class="food-restrict-label">
+                <span class="filter-icon">✓</span>
+                <div><strong>Preferências e restrições</strong><small>Oculte alimentos que você evita</small></div>
+              </div>
+              <div class="food-restrict-chips" id="foodRestrictChips" role="group" aria-label="Filtro de restrições alimentares"></div>
+            </div>
+          </div>
+
+          <div id="foodSearchStatus" class="food-search-status" hidden></div>
+          <button class="food-back-btn" id="foodBackBtn" type="button" hidden>← Voltar</button>
+          <button class="food-reopen-btn" id="foodFilterOpenBtn" type="button" hidden>＋ Mostrar categorias e filtros</button>
+          <div class="food-results-head" id="foodResultsHead" hidden>
+            <div><strong>Resultados</strong><span>Selecione um alimento para ver os detalhes.</span></div>
+          </div>
+          <div id="foodSearchResult" class="food-search-result" hidden></div>
+
+          <div class="food-info-strip">
+            <span>ⓘ</span> Valores médios por <strong>100 g</strong> (ou por unidade quando indicado). Use o rótulo do produto como referência final.
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:36px;margin-bottom:18px">
+          <span class="eyebrow">EXEMPLOS</span>
+          <h3 style="font-size:clamp(22px,3vw,28px);color:var(--dark);margin:8px 0 0">Alimentos do dia a dia</h3>
+        </div>
+        <div class="food-grid" id="foodGrid"></div>
+      </div>
+    </section>
+
+    <section id="dieta" class="reveal">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">PERSONALIZAÇÃO</span>
+          <h2>Plano alimentar educativo</h2>
+          <p>O plano monta uma semana inteira (segunda a domingo) com refeições variadas a partir dos seus dados, objetivo, preferências, restrições e rotina. Quanto mais você conta sobre o seu dia a dia, mais o exemplo se ajusta a você. Não é uma dieta
+            médica nem uma estratégia de perda de peso.</p>
+        </div>
+        <div class="diet-grid">
+          <form class="card diet-form" id="dietForm">
+            <div class="field"><label for="dietAge">Idade</label><input id="dietAge" type="number" min="1" max="120"
+                placeholder="18" required></div>
+            <div class="field"><label for="dietGoal">Como você quer se sentir?</label><select id="dietGoal">
+                <option value="energia">Ter mais energia</option>
+                <option value="equilibrio">Ter uma alimentação equilibrada</option>
+                <option value="esporte">Apoiar atividade física</option>
+                <option value="rotina">Organizar minha rotina</option>
+              </select></div>
+            <div class="field"><label for="dietStyle">Preferência</label><select id="dietStyle">
+                <option value="brasileira">Comida brasileira</option>
+                <option value="vegetariana">Vegetariana</option>
+                <option value="vegana">Vegana</option>
+                <option value="simples">Refeições simples</option>
+              </select></div>
+            <div class="field"><label for="dietMeals">Quantas refeições por dia?</label><select id="dietMeals">
+                <option value="3">3 refeições (café, almoço, jantar)</option>
+                <option value="4" selected>4 refeições (+ 1 lanche)</option>
+                <option value="5">5 refeições (+ 2 lanches)</option>
+                <option value="6">6 refeições (rotina fracionada)</option>
+              </select></div>
+            <div class="field"><label for="dietTime">Tempo disponível para cozinhar</label><select id="dietTime">
+                <option value="rapido">Pouco tempo — quero praticidade</option>
+                <option value="moderado" selected>Tempo moderado</option>
+                <option value="gosto">Gosto de cozinhar com calma</option>
+              </select></div>
+            <div class="field"><label>Restrições e alergias</label>
+              <div class="checkbox-grid" id="restrictGrid">
+                <label class="chk-option"><input type="checkbox" value="lactose">Sem lactose</label>
+                <label class="chk-option"><input type="checkbox" value="gluten">Sem glúten</label>
+                <label class="chk-option"><input type="checkbox" value="ovo">Sem ovo</label>
+                <label class="chk-option"><input type="checkbox" value="oleaginosas">Sem castanhas</label>
+                <label class="chk-option"><input type="checkbox" value="frutosdomar">Sem frutos do mar</label>
+                <label class="chk-option"><input type="checkbox" value="carne">Sem carne vermelha</label>
+                <label class="chk-option"><input type="checkbox" value="frango">Sem frango</label>
+                <label class="chk-option"><input type="checkbox" value="porco">Sem porco</label>
+              </div>
+            </div>
+            <div class="field"><label for="dietDislikes">Alimentos que prefere evitar (opcional)</label><input
+                id="dietDislikes" type="text" placeholder="ex: brócolis, fígado"></div>
+            <button class="btn btn-primary diet-submit" type="submit">Criar minha semana →</button>
+            <div class="disclaimer">O sistema não cria restrições severas, jejum, metas de emagrecimento ou cardápios de
+              baixa caloria. Para menores de 20 anos, o IMC não é usado para decidir alimentação.</div>
+          </form>
+          <div class="card diet-result empty" id="dietResult">
+            <div class="diet-empty">
+              <div class="diet-empty-icons" aria-hidden="true">
+                <span>🥐</span><span>🥗</span><span>🍲</span><span>🍎</span>
+              </div>
+              <h3>Seu plano aparece aqui</h3>
+              <p>Preencha o formulário ao lado para receber uma semana de refeições, dia a dia, com combinações visuais dos alimentos — ajustado ao seu estilo, restrições e rotina.</p>
+              <ul class="diet-empty-steps">
+                <li><span>1</span> Escolha objetivo e preferência</li>
+                <li><span>2</span> Marque restrições, se houver</li>
+                <li><span>3</span> Clique em <strong>Criar plano</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="habitos" class="reveal">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">CONSISTÊNCIA</span>
+          <h2>Hábitos que cabem na rotina</h2>
+          <p>Marque o que você fez hoje, adicione seus próprios hábitos e acompanhe a evolução. Pequenas repetições
+            diárias costumam ter mais impacto no bem-estar do que mudanças bruscas e difíceis de manter — por isso o
+            foco aqui é constância, não perfeição.</p>
+        </div>
+        <div class="habits-grid">
+          <div class="card habit-card">
+            <div class="habit-card-head">
+              <div>
+                <span class="eyebrow">HOJE</span>
+                <h3 class="habit-card-title">Seus hábitos</h3>
+              </div>
+              <div class="habit-pct-badge" id="habitPctBadge">0%</div>
+            </div>
+            <div class="habit-list" id="habitRows"></div>
+            <div class="add-habit">
+              <input id="habitInput" placeholder="Novo hábito (ex: alongar 5 min)..." maxlength="80">
+              <button class="btn btn-primary" id="habitAddBtn" type="button">Adicionar</button>
+            </div>
+          </div>
+          <div class="card streak" id="streakCard">
+            <div class="streak-ring-wrap">
+              <svg class="streak-ring" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="streak-ring-bg" cx="60" cy="60" r="52"></circle>
+                <circle class="streak-ring-fg" id="habitRingFg" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <div class="streak-ring-center">
+                <div class="streak-flame" id="streakFlame" aria-hidden="true">🔥</div>
+                <div class="streak-num" id="streakNum">0</div>
+                <div class="streak-label">dias</div>
+              </div>
+            </div>
+            <p class="streak-caption" id="streakCaption">Comece marcando um hábito</p>
+            <div class="progress habit-progress">
+              <i id="progressFill"></i>
+            </div>
+            <div id="progressText" class="habit-progress-text">0 de 0 concluídos</div>
+            <button class="btn btn-primary" id="closeDayBtn" disabled>Concluir o dia ✓</button>
+            <p class="streak-hint">Marque todos os hábitos para liberar o botão e somar na sequência.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><strong style="font:600 20px var(--display);color:var(--dark)">Health Line</strong>
+        <p>Informação acolhedora para escolhas possíveis.</p>
+      </div>
+      <p>Ferramentas educativas. Não substituem orientação de profissionais de saúde.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="foodModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><span class="eyebrow">ALIMENTO</span>
+          <h2 id="modalTitle" style="font-size:34px;margin-top:8px"></h2>
+        </div><button class="close" id="modalClose">×</button>
+      </div>
+      <div id="modalBody" style="margin-top:18px"></div>
+    </div>
+  </div>
+
+  <!-- Assistente IA Linha -->
+  <button class="ai-fab" id="aiFab" type="button" title="Falar com a Linha" aria-label="Abrir assistente">
+    <span class="ai-fab-icon">✦</span>
+    <span class="ai-fab-pulse" aria-hidden="true"></span>
+  </button>
+  <div class="ai-backdrop" id="aiBackdrop" hidden></div>
+  <div class="ai-panel" id="aiPanel" role="dialog" aria-label="Assistente Linha" aria-modal="true" hidden>
+    <div class="ai-head">
+      <div class="ai-avatar" aria-hidden="true">✦</div>
+      <div class="ai-head-info">
+        <h3>Linha</h3>
+        <p id="aiModeLabel"><span class="ai-status-dot"></span>Modo local</p>
+      </div>
+      <div class="ai-head-actions">
+        <button class="ai-icon-btn" id="aiClearChat" type="button" title="Limpar conversa" aria-label="Limpar conversa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg>
+        </button>
+        <button class="ai-icon-btn" id="aiClose" type="button" title="Fechar" aria-label="Fechar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ai-context" id="aiContext">
+      <span class="ai-chip">Calcule o IMC ou use as ferramentas para eu te acompanhar</span>
+    </div>
+
+    <div class="ai-messages" id="aiMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+    <div class="ai-suggestions" id="aiSuggestions"></div>
+
+    <div class="ai-input-row">
+      <div class="ai-input-wrap">
+        <input id="aiInput" type="text" placeholder="Pergunte qualquer coisa..." autocomplete="off" maxlength="500" aria-label="Mensagem para a Linha">
+        <span class="ai-char-count" id="aiCharCount" hidden>0/500</span>
+      </div>
+      <button class="ai-send" id="aiSend" type="button" aria-label="Enviar" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+  <script src="conta.js"></script>
+
+</body>
+
+</html>
